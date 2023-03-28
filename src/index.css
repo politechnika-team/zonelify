@@ -1,13 +1,145 @@
-body {
+*{
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  background-color: #6E8891;
+  font-family: 'Aldrich', sans-serif;
+}
+
+.login-site{
+  height: 100vh;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container h1{
+  font-size: 8vw;
+  margin: 0;
+}
+
+.logo-container h2{
+  font-size: 1.5vw;
+  margin-top: 5px;
+}
+
+
+.logo-container, .login-wrapper{
+  margin: 60px 30px;
+}
+
+/* login form*/
+
+.login-wrapper{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  min-width: 35%;
+  height: 60%;
+  background-color: white;
+  border-radius: 1%;
+  box-shadow: 0 0.188em 1.550em #475b61;
+}
+
+.login-container{
+  width: 90%;  
+}
+
+.login-container h1{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.input-container input{
+  width: 100%;
+  border: 1px solid #EEEEEE;
+  background: rgba(249, 249, 249, 0.8);
+  border-radius: 4px;
+
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+.login-container p:last-child{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.2vw;
+}
+
+.login-container p a{
+  color: #007AFF;
+  cursor: pointer;
+  
+}
+
+.login-container p a:hover{
+  text-decoration: underline;
+}
+
+/* login button */
+
+
+.login-btn{
+  cursor: pointer;
+  width: 100%;
+  border-style: none;
+  background-color: #0F1D30;
+  color: white;
+  font-size: 2.2vw;
+  padding: 22px;
+  border-radius: 8px;
+  margin-top: 5%;
+}
+
+
+/*register container*/
+
+.register-wrapper{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  min-width: 35%;
+  height: 80%;
+  background-color: white;
+  border-radius: 1%;
+  box-shadow: 0 0.188em 1.550em #475b61;
+}
+
+.register-wrapper h1{
+  margin-bottom: 5%
+}
+
+@media (max-width: 800px){
+  
+ /*zablokowac rozmiar czcionki jakoś przy 800width*/
+  .login-site{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-wrapper{
+    width: 290px;
+  }
+
+  .logo-container{
+    margin-bottom: 0;
+  }
+  
 }
