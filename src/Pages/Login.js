@@ -15,12 +15,16 @@ export default function Login() {
           <h1>Login</h1>
           <form>
             <div className="input-container">
-              <p>Email</p>
-              <input type="text" placeholder="Email"></input>
+              <label for="email">Email</label>
+              <input name="email" type="text" placeholder="Email"></input>
             </div>
             <div className="input-container">
-              <p>Password</p>
-              <input type="password" placeholder="Password"></input>
+              <label for="password">Password</label>
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+              ></input>
             </div>
             <div className="btn-container">
               <button className="login-btn">Login</button>

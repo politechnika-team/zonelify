@@ -15,24 +15,32 @@ export default function Login() {
           <h1>Create account</h1>
           <form>
             <div className="input-container">
-              <p>Email</p>
-              <input type="text" placeholder="Email"></input>
+              <label for="email">Email</label>
+              <input name="email" type="text" placeholder="Email"></input>
             </div>
             <div className="input-container">
-              <p>Full Name</p>
-              <input type="text" placeholder="Email"></input>
+              <label for="fullname">Fullname</label>
+              <input name="fullname" type="text" placeholder="Email"></input>
             </div>
             <div className="input-container">
-              <p>Username</p>
-              <input type="text" placeholder="Email"></input>
+              <label for="username">Username</label>
+              <input name="username" type="text" placeholder="Email"></input>
             </div>
             <div className="input-container">
-              <p>Password</p>
-              <input type="password" placeholder="Password"></input>
+              <label for="password">Password</label>
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+              ></input>
             </div>
             <div className="input-container">
-              <p>Confirm Password</p>
-              <input type="password" placeholder="Password"></input>
+              <label for="confirm-password">Confirm password</label>
+              <input
+                name="confirm-password"
+                type="password"
+                placeholder="Password"
+              ></input>
             </div>
             <div className="btn-container">
               <button className="login-btn">Create New Account</button>
