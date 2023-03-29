@@ -12,11 +12,11 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const displayName = e.target[0].value
+    const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
     try {
-      const res = await createUserWithEmailAndPassword(auth, email, password)
+      const res = await createUserWithEmailAndPassword(auth, email, password);
 
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
@@ -24,12 +24,10 @@ export default function Register() {
         email,
       });
 
-      navigate("/")
-      
+      navigate("/");
     } catch (error) {
-      setErr(true)
+      setErr(true);
     }
- 
   };
   return (
     <div className="login-site">
@@ -44,14 +42,35 @@ export default function Register() {
         <div className="login-container">
           <h1>Create account</h1>
           <form onSubmit={handleSubmit}>
-          <input required type="text" placeholder="display name" />
-          <input required type="email" placeholder="email" />
-          <input required type="password" placeholder="password" />
-          <button>Sign up</button>
-          {/* {err && <span>Something went wrong</span>} */}
-        </form>
+            <div className="input-container">
+              <label htmlFor="display-name">Name</label>
+              <input
+                required
+                name="display-name"
+                type="text"
+                placeholder="display name"
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="email">Email</label>
+              <input required name="email" type="text" placeholder="email" />
+            </div>
+            <div className="input-container">
+              <label htmlFor="password">Password</label>
+              <input
+                required
+                name="password"
+                type="password"
+                placeholder="password"
+              />
+            </div>
+            <div className="btn-container">
+              <button className="login-btn">Sign up</button>
+            </div>
+            {/* {err && <span>Something went wrong</span>} */}
+          </form>
           <p>
-            You do have account? <Link to="/login">LogIn</Link>
+            You do have account? <Link to="/login">Log In</Link>
           </p>
         </div>
       </div>

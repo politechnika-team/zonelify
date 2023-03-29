@@ -1,11 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes,Navigate  } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
-
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -15,7 +19,7 @@ export default function App() {
       return <Navigate to="/login" />;
     }
 
-    return children
+    return children;
   };
   return (
     <Router>
@@ -24,9 +28,9 @@ export default function App() {
           <Route
             index
             element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
             }
           />
           <Route path="login" element={<Login />} />
