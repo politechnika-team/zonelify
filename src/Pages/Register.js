@@ -1,6 +1,36 @@
 import React from "react";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function Login() {
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
+
+export default function Register() {
+  const [err, setErr] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const displayName = e.target[0].value
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password)
+
+      await setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        displayName,
+        email,
+      });
+
+      navigate("/")
+      
+    } catch (error) {
+      setErr(true)
+    }
+ 
+  };
   return (
     <div className="login-site">
       <div className="logo-container">
@@ -13,41 +43,15 @@ export default function Login() {
       <div className="register-wrapper">
         <div className="login-container">
           <h1>Create account</h1>
-          <form>
-            <div className="input-container">
-              <label for="email">Email</label>
-              <input name="email" type="text" placeholder="Email"></input>
-            </div>
-            <div className="input-container">
-              <label for="fullname">Fullname</label>
-              <input name="fullname" type="text" placeholder="Email"></input>
-            </div>
-            <div className="input-container">
-              <label for="username">Username</label>
-              <input name="username" type="text" placeholder="Email"></input>
-            </div>
-            <div className="input-container">
-              <label for="password">Password</label>
-              <input
-                name="password"
-                type="password"
-                placeholder="Password"
-              ></input>
-            </div>
-            <div className="input-container">
-              <label for="confirm-password">Confirm password</label>
-              <input
-                name="confirm-password"
-                type="password"
-                placeholder="Password"
-              ></input>
-            </div>
-            <div className="btn-container">
-              <button className="login-btn">Create New Account</button>
-            </div>
-          </form>
+          <form onSubmit={handleSubmit}>
+          <input required type="text" placeholder="display name" />
+          <input required type="email" placeholder="email" />
+          <input required type="password" placeholder="password" />
+          <button>Sign up</button>
+          {/* {err && <span>Something went wrong</span>} */}
+        </form>
           <p>
-            Don't have account? <a href="/register">Create new account</a>
+            You do have account? <Link to="/login">LogIn</Link>
           </p>
         </div>
       </div>

@@ -1,7 +1,15 @@
 import React from "react";
+import { useContext } from "react";
 import logo from "../images/site-logo.svg";
+import {signOut} from "firebase/auth"
+import { auth } from '../firebase'
+import { AuthContext } from '../context/AuthContext'
 
 export default function Navbar() {
+  const {currentUser} = useContext(AuthContext)
+  const handleLogOut = () => {
+    signOut(auth)
+  }
   return (
     <nav>
       <a href="">
@@ -15,7 +23,7 @@ export default function Navbar() {
         <a>Profile</a>
       </div>
       <div className="nav-logout">
-        <button>Log out</button>
+      <button onClick={handleLogOut}>logout</button>
       </div>
     </nav>
   );

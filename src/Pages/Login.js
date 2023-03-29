@@ -1,6 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 export default function Login() {
+  const [err, setErr] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (err) {
+      setErr(true);
+    }
+  };
   return (
     <div className="login-site">
       <div className="logo-container">
@@ -13,13 +33,13 @@ export default function Login() {
       <div className="login-wrapper">
         <div className="login-container">
           <h1>Login</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-container">
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input name="email" type="text" placeholder="Email"></input>
             </div>
             <div className="input-container">
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 name="password"
                 type="password"
@@ -31,7 +51,7 @@ export default function Login() {
             </div>
           </form>
           <p>
-            Don't have account? <a href="/register">Create new account</a>
+            Don't have account? <Link to="/register">Create new account</Link>
           </p>
         </div>
       </div>
