@@ -8,6 +8,7 @@ import {
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
+import Profile from "./Pages/Profile";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
@@ -29,7 +30,15 @@ export default function App() {
             index
             element={
               <ProtectedRoute>
-                <Home />
+                <Home photoURL={currentUser?.photoURL} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <ProtectedRoute>
+                <Profile currentUser={currentUser} />
               </ProtectedRoute>
             }
           />

@@ -94,7 +94,12 @@ nav{
     height: 40vh;
     width: 100%;
     margin-left: 50%;
+    font-size: 1.2rem;
     font-weight: 600;
+}
+
+.nav-buttons a:active{
+    background-color: red;
 }
 
 .nav-logout{

@@ -1,9 +1,8 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Tweet from "../components/Tweet";
-import pudzian from "../images/pudzian.jpg";
 
-export default function MainSite() {
+export default function MainSite({ photoURL, currentUser }) {
   return (
     <div className="mainsite-container">
       <Navbar />
@@ -14,7 +13,8 @@ export default function MainSite() {
         <div className="dropin-container">
           <form>
             <div className="dropin-input">
-              <img src={pudzian} alt="avatar" />
+              {/*Dorobic w stylach loading na avatary bo sie brzydko ladują - przechodzą z alta na default i dopiero  potem na user avatar*/}
+              <img src={photoURL} alt="avatar" />
               <input type="text" placeholder="Write something!" />
             </div>
             <button className="dropin-btn" value="Drop in">
