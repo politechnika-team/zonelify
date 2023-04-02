@@ -144,8 +144,19 @@ nav > a{
 nav .nav-buttons a{
     text-decoration: none;
     color: white;
+    padding: 5px;
+    border-radius: 20%;
+    transition:all 0.5s ease
 }
 
+.nav-buttons a:hover {
+    border:1px white;
+    background-color: #333;
+    color: #fff;
+  }
+.nav-buttons a.active {
+  font-weight: 1000;
+}
 /*Post styling*/
 
 .post-container{

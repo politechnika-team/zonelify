@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import logo from "../images/site-logo.svg";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
@@ -12,17 +12,29 @@ export default function Navbar() {
     signOut(auth);
   };
 
+  const location = useLocation();
+
   return (
     <nav>
-      <Link to="/">
+      <NavLink exact to="/" activeClassName="active">
         <img src={logo} alt="eloo" />
-      </Link>
+      </NavLink>
       <div className="nav-buttons">
-        <Link to="/">Home</Link>
-        <Link to="/messages">Messages</Link>
-        <Link to="/notes">Notes</Link>
-        <Link to="/daily">Daily</Link>
-        <Link to="/profile">Profile</Link>
+        <NavLink to="/" activeClassName="active">
+          Home
+        </NavLink>
+        <NavLink to="/messages" activeClassName="active">
+          Messages
+        </NavLink>
+        <NavLink to="/notes" activeClassName="active">
+          Notes
+        </NavLink>
+        <NavLink to="/daily" activeClassName="active">
+          Daily
+        </NavLink>
+        <NavLink to="/profile" activeClassName="active">
+          Profile
+        </NavLink>
       </div>
       <div className="nav-logout">
         <button onClick={handleLogOut}>Log Out</button>
