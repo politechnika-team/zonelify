@@ -21,6 +21,7 @@ export default function Profile({ currentUser }) {
   useEffect(() => {
     if (currentUser?.photoURL) setPhotoURL(currentUser.photoURL);
   }, [currentUser]);
+
   return (
     <div className="mainsite-container">
       <Navbar />
@@ -38,6 +39,7 @@ export default function Profile({ currentUser }) {
             accept="image/png, image/jpeg"
             onChange={handleChange}
           />
+
           <button
             className="dropin-btn"
             disabled={loading || !photo}

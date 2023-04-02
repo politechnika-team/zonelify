@@ -15,6 +15,11 @@ import { AuthContext } from "./context/AuthContext";
 export default function App() {
   const { currentUser } = useContext(AuthContext);
 
+  if (currentUser && currentUser.photoURL === undefined) {
+    currentUser.photoURL =
+      "https://firebasestorage.googleapis.com/v0/b/zonelifyv2.appspot.com/o/profile-default.jpg?alt=media&token=7ebfddc9-b58f-400c-83c4-09497b7ae683";
+  }
+
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
       return <Navigate to="/login" />;
@@ -30,7 +35,10 @@ export default function App() {
             index
             element={
               <ProtectedRoute>
-                <Home photoURL={currentUser?.photoURL} />
+                <Home
+                  photoURL={currentUser?.photoURL}
+                  currentUser={currentUser}
+                />
               </ProtectedRoute>
             }
           />

@@ -22,9 +22,9 @@ export default function Tweet() {
           </div>
         </div>
         <div className="post-footer">
-          <img src={icon1} />
-          <img src={icon2} />
-          <img src={icon3} />
+          <img alt="" src={icon1} />
+          <img alt="" src={icon2} />
+          <img alt="" src={icon3} />
         </div>
       </div>
     </div>
