@@ -147,10 +147,36 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    max-width: 500px;
+    height: 800px;
+  }
+
+  h1{
+    font-size: calc(
+      2rem + 1.5vw
+    );
+  }
+
+  .logo-container h1{
+    font-size: calc(
+      4rem + 1.5vw
+    );
+  }
+
+  .logo-container h2{
+    font-size: calc(
+      1rem + 1.2vw
+    );
+    margin-bottom: 50px;
   }
 
   .login-wrapper{
-    width: 290px;
+    width: 100%;
+  }
+
+  .register-wrapper{
+    width: 100%;
   }
 
   .logo-container{

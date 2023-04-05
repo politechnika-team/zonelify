@@ -36,9 +36,7 @@ export default function Navbar() {
           Profile
         </NavLink>
       </div>
-      <div className="nav-logout">
-        <button onClick={handleLogOut}>Log Out</button>
-      </div>
+        <button onClick={handleLogOut} className="logout-btn">Log Out</button>
     </nav>
   );
 }
