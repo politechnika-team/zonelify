@@ -1,20 +1,22 @@
 import { React, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { upload } from "../firebase";
 
 export default function Profile({ currentUser }) {
   const [photoURL, setPhotoURL] = useState(
-    "https://qqmodels.pl/profiles/profile-5238.jpg?16801769"
+    "https://firebasestorage.googleapis.com/v0/b/zonelifyv2.appspot.com/o/profile-default.jpg?alt=media&token=7ebfddc9-b58f-400c-83c4-09497b7ae683"
   );
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   function handleChange(e) {
     if (e.target.files[0]) {
       setPhoto(e.target.files[0]);
     }
   }
-  function handleClick() {
+  async function handleClick() {
     upload(photo, currentUser, setLoading);
   }
 
@@ -32,14 +34,15 @@ export default function Profile({ currentUser }) {
         <div className="dropin-container">
           {/*Dorobic w stylach loading na avatary bo sie brzydko ladują - przechodzą z alta na default i dopiero  potem na user avatar*/}
           <img className="profile-picture" src={photoURL} alt="user profile" />
-          <label htmlFor="avatar">Upload your avatar: </label>
+          <label htmlFor="avatar" className="custom-upload-button">
+            Upload your avatar:{" "}
+          </label>
           <input
             type="file"
             name="avatar"
             accept="image/png, image/jpeg"
             onChange={handleChange}
           />
-
           <button
             className="dropin-btn"
             disabled={loading || !photo}

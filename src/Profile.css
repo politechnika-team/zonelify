@@ -5,3 +5,22 @@
     height: 16vh
 }
 
+
+/*TODO*/
+/*ZROBIC LADNE STYLE DO BUTTONA UPLOADU*/
+input[type="file"]::file-selector-button {
+    content: "choose file";
+    font-weight: bold;
+    color: black;
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 3px;
+}
+
+
+input[type="file"]::file-selector-button:hover{
+    color: white;
+    background-color: black
+}
+
+

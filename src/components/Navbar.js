@@ -16,25 +16,15 @@ export default function Navbar() {
 
   return (
     <nav>
-      <NavLink exact to="/" activeClassName="active">
+      <NavLink to="/">
         <img src={logo} alt="eloo" />
       </NavLink>
       <div className="nav-buttons">
-        <NavLink to="/" activeClassName="active">
-          Home
-        </NavLink>
-        <NavLink to="/messages" activeClassName="active">
-          Messages
-        </NavLink>
-        <NavLink to="/notes" activeClassName="active">
-          Notes
-        </NavLink>
-        <NavLink to="/daily" activeClassName="active">
-          Daily
-        </NavLink>
-        <NavLink to="/profile" activeClassName="active">
-          Profile
-        </NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/messages">Messages</NavLink>
+        <NavLink to="/notes">Notes</NavLink>
+        <NavLink to="/daily">Daily</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
       </div>
       <div className="nav-logout">
         <button onClick={handleLogOut}>Log Out</button>
