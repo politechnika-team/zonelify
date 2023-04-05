@@ -26,9 +26,7 @@ export default function Navbar() {
         <NavLink to="/daily">Daily</NavLink>
         <NavLink to="/profile">Profile</NavLink>
       </div>
-      <div className="nav-logout">
-        <button onClick={handleLogOut}>Log Out</button>
-      </div>
+        <button onClick={handleLogOut} className="logout-btn">Log Out</button>
     </nav>
   );
 }
