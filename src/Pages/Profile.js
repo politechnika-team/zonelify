@@ -20,6 +20,8 @@ export default function Profile({ currentUser }) {
     upload(photo, currentUser, setLoading);
   }
 
+  console.log(currentUser.displayName);
+
   useEffect(() => {
     if (currentUser?.photoURL) setPhotoURL(currentUser.photoURL);
   }, [currentUser]);

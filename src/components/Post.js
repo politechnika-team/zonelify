@@ -3,22 +3,22 @@ import icon1 from "../images/post-icon1.svg";
 import icon2 from "../images/post-icon2.svg";
 import icon3 from "../images/post-icon3.svg";
 
-export default function Tweet() {
+export default function Tweet({ content, username, photoURL }) {
   return (
     <div className="post">
       <div className="post-avatar">
-        <img alt="avatar" />
+        <img alt="avatar" src={photoURL} />
       </div>
       <div className="post-body">
         <div className="post-header">
           <div className="post-headerText">
             <h3>
-              Daniel Urban
-              <span className="post-headerSpecial"> @danielek1337</span>
+              {/*tutaj albo dodajemy mozliwosc dodania nazwy pełnej profilu albo nie */}
+              <span className="post-headerSpecial"> @{username}</span>
             </h3>
           </div>
           <div className="post-headerDescription">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <p>{content}</p>
           </div>
         </div>
         <div className="post-footer">

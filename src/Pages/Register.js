@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -23,12 +23,16 @@ export default function Register() {
         displayName,
         email,
       });
+      await updateProfile(auth.currentUser, {
+        displayName: displayName,
+      });
 
       navigate("/");
     } catch (error) {
       setErr(true);
     }
   };
+
   return (
     <div className="login-site">
       <div className="logo-container">

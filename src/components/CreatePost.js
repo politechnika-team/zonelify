@@ -34,10 +34,8 @@ export default function CreatePost({ photoURL, currentUser }) {
     await addDoc(postsRef, {
       content: data.content,
       userId: user?.uid,
-      //TODO
-      //username wyrzuca null w db
-      //TODO
       username: user?.displayName,
+      photoURL: currentUser?.photoURL,
     });
   };
   return (

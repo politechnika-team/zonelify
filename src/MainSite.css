@@ -143,7 +143,7 @@ nav .nav-buttons a{
 
 .post-container{
     overflow-y: scroll;
-    height: 75%;
+    height:73%;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
