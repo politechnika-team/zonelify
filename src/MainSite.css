@@ -213,3 +213,10 @@ nav .nav-buttons a{
     width: 25px;
     height: 40px;
 }
+
+
+.post-footer img:hover{
+    background-color: black;;
+}
+
+

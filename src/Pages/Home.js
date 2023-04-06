@@ -31,9 +31,11 @@ export default function MainSite({ photoURL, currentUser }) {
           {postsList?.map((post) => (
             <Post
               key={post.id}
+              postId={post.id}
               content={post.content}
               username={post.username}
               photoURL={post.photoURL}
+              currentUser={currentUser}
             />
           ))}
         </div>

@@ -1,9 +1,84 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import icon1 from "../images/post-icon1.svg";
 import icon2 from "../images/post-icon2.svg";
 import icon3 from "../images/post-icon3.svg";
+import { db } from "../firebase";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
-export default function Tweet({ content, username, photoURL }) {
+export default function Tweet({
+  content,
+  username,
+  photoURL,
+  currentUser,
+  postId,
+}) {
+  const [likes, setLikes] = useState(null);
+  const likesRef = collection(db, "likes");
+
+  const likesDoc = query(likesRef, where("postId", "==", postId));
+
+  console.log(currentUser.uid);
+  const getLikes = async () => {
+    const data = await getDocs(likesDoc);
+    setLikes(data.docs.map((doc) => ({ userId: doc.data().userId })));
+  };
+
+  //REMOVING LIKE FUNCTION
+  const removeLike = async (data) => {
+    try {
+      const likeToDeleteQuery = query(
+        likesRef,
+        where("postId", "==", postId),
+        where("userId", "==", currentUser.uid)
+      );
+
+      const likeToDeleteData = await getDocs(likeToDeleteQuery);
+      const likeId = likeToDeleteData.docs[0].id;
+      const likeToDelete = doc(db, "likes", likeId);
+      await deleteDoc(likeToDelete);
+      if (currentUser) {
+        setLikes(
+          (prev) =>
+            prev && prev?.filter((like) => like.userId !== currentUser.uid)
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //ADDING LIKE FUNCTION
+  const addLike = async (data) => {
+    try {
+      await addDoc(likesRef, {
+        userId: currentUser?.uid,
+        postId: postId,
+      });
+      //RERENDERING COMPONENT ON USER LIKE CLICK TO SHOW THE COUNTER CHANGE
+      if (currentUser) {
+        setLikes((prev) =>
+          prev
+            ? [...prev, { userId: currentUser?.uid }]
+            : [{ userId: currentUser?.uid }]
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const hasUserLiked = likes?.find((like) => like.userId === currentUser?.uid);
+
+  useEffect(() => {
+    getLikes();
+  }, []);
   return (
     <div className="post">
       <div className="post-avatar">
@@ -22,8 +97,18 @@ export default function Tweet({ content, username, photoURL }) {
           </div>
         </div>
         <div className="post-footer">
+          {/*TODO*/}
+          {/*pozmieniac svg na buttony albo obrazki bo trzeba zmienic na thumbsdown albo dislike jednak jak już raz polajkowal */}
+          {/*TODO*/}
           <img alt="" src={icon1} />
-          <img alt="" src={icon2} />
+          <img
+            alt=""
+            src={icon2}
+            onClick={hasUserLiked ? removeLike : addLike}
+          />
+          {/*tutaj zmienic to na nowy obrazek albo cos*/}
+          {hasUserLiked ? "polajkowane" : "niepolajkowane"}
+          {likes?.length && <p>{likes?.length}</p>}
           <img alt="" src={icon3} />
         </div>
       </div>

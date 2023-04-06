@@ -15,6 +15,7 @@ export default function CreatePost({ photoURL, currentUser }) {
       .required("In order to drop in you need to write something!!!"),
     //TODO
     // dodać lajki dislajki fajwority
+    // po dodaniu postu i zmiany avataru przez user'a avatar w poscie sie nie zmienia TRZEBA TO ZROBIC
     //TODO
   });
   //resolver to useForm
