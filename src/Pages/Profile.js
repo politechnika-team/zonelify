@@ -1,9 +1,12 @@
-import { React, useEffect, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { upload } from "../firebase";
+import { AuthContext } from "../context/AuthContext";
 
-export default function Profile({ currentUser }) {
+export default function Profile() {
+  const { currentUser } = useContext(AuthContext);
+
   const [photoURL, setPhotoURL] = useState(
     "https://firebasestorage.googleapis.com/v0/b/zonelifyv2.appspot.com/o/profile-default.jpg?alt=media&token=7ebfddc9-b58f-400c-83c4-09497b7ae683"
   );

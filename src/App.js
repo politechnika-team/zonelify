@@ -35,10 +35,7 @@ export default function App() {
             index
             element={
               <ProtectedRoute>
-                <Home
-                  photoURL={currentUser?.photoURL}
-                  currentUser={currentUser}
-                />
+                <Home />
               </ProtectedRoute>
             }
           />
@@ -46,7 +43,7 @@ export default function App() {
             path="profile"
             element={
               <ProtectedRoute>
-                <Profile currentUser={currentUser} />
+                <Profile />
               </ProtectedRoute>
             }
           />

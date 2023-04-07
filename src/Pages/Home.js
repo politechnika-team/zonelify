@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import CreatePost from "../components/CreatePost";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase";
+import { AuthContext } from "../context/AuthContext";
 
-export default function MainSite({ photoURL, currentUser }) {
+export default function MainSite() {
+  const { currentUser } = useContext(AuthContext);
+
   const [postsList, setPostsList] = useState(null);
   const postsRef = collection(db, "posts");
 
@@ -25,7 +28,10 @@ export default function MainSite({ photoURL, currentUser }) {
         <div className="home-header">
           <h1>Home</h1>
         </div>
-        <CreatePost photoURL={photoURL} currentUser={currentUser} />
+        <CreatePost
+          photoURL={currentUser?.photoURL}
+          currentUser={currentUser}
+        />
         <div className="post-container">
           {/*tweet section printed from firebase */}
           {postsList?.map((post) => (
