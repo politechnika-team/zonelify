@@ -64,6 +64,17 @@
     height: 3rem;
     font-size: 1rem;
     margin-left: auto;
+    cursor: pointer;
+}
+
+
+/*TODO*/
+/*tutaj dodac style do nieaktywnego buttona jakies ładne*/
+/*TODO*/
+.dropin-btn:disabled{
+    background-color: black;
+    color: white;
+    cursor: not-allowed
 }
 
 .post-container{

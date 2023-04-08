@@ -32,7 +32,6 @@ export default function Profile() {
 
   return (
     <div className="mainsite-container pages-container">
-      <Navbar />
       <div className="home-container">
         <div className="home-header">
           <h1>Profile</h1>

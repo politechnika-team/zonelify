@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import "../css/Home.css";
 
 export default function CreatePost({ photoURL, currentUser }) {
   const [user] = useAuthState(auth);
@@ -19,11 +20,7 @@ export default function CreatePost({ photoURL, currentUser }) {
     //TODO
   });
   //resolver to useForm
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -39,6 +36,7 @@ export default function CreatePost({ photoURL, currentUser }) {
       photoURL: currentUser?.photoURL,
     });
   };
+
   return (
     <div className="dropin-container">
       <form onSubmit={handleSubmit(onCreatePost)}>
@@ -50,9 +48,16 @@ export default function CreatePost({ photoURL, currentUser }) {
             placeholder="Write something!"
             {...register("content")}
           />
-          <p style={{ color: "red" }}>{errors.content?.message}</p>
+          <p style={{ color: "red" }}>{formState.errors.content?.message}</p>
         </div>
-        <button className="dropin-btn" value="Drop in">
+        <button
+          className="dropin-btn"
+          value="Drop in"
+          disabled={
+            !formState.isValid ||
+            (formState.touchedFields.content && !formState.dirtyFields.content)
+          }
+        >
           Drop in
         </button>
       </form>
