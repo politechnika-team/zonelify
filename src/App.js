@@ -9,8 +9,10 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
+import SideMenu from "./SideMenu";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Chat from "./Pages/Chat";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -29,6 +31,7 @@ export default function App() {
   };
   return (
     <Router>
+      {currentUser && <SideMenu />}
       <Routes>
         <Route path="/">
           <Route
@@ -44,6 +47,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <ProtectedRoute>
+                <Chat />
               </ProtectedRoute>
             }
           />

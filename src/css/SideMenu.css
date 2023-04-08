@@ -1,0 +1,75 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100vh;
+    background-color: #6E8891;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .pages-container{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 25%; /* match the width of the Sidebar */
+    right: 0;
+    bottom: 0;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .nav-buttons a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .nav-buttons a:hover,
+  .nav-buttons a.active {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  nav img {
+    max-height: 100%;
+    width: 12vw;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+  nav .logout-btn {
+    width: 40%;
+    height: 40px;
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  

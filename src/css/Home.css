@@ -1,19 +1,13 @@
-/*mainsite container*/
-
-.mainsite-container{
-    display: flex;
-
-}
 
 /*home content styles*/
 
 .home-container{
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     background-color: white;
     height: 100vh;
-    min-width: 60%;
+    min-width: 70%;
 }
 
 .home-header{
@@ -28,10 +22,9 @@
     font-size: 1.8rem;
     font-weight: 600;
     text-align: center;
+    z-index: 5;
   
 }
-
-/*dropin box styling */
 
 .dropin-container{
     width: 100%;
@@ -72,74 +65,6 @@
     font-size: 1rem;
     margin-left: auto;
 }
-
-
-
-/*navbar styling*/
-nav{
-    width: 25%;
-    height: 100vh;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-buttons{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 40vh;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.logout-btn{
-    min-width: 120px;
-    height: 40px;
-    margin-bottom: 80px;
-    background-color: #f5f5f5;
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    
-}
-
-nav img{
-    height: 100%;
-}
-
-nav > a{
-    margin-left: auto;
-    margin-right: auto;
-    height: 200px;
-    width: 200px;
-    margin-top: 20px;
-
-}
-
-nav .nav-buttons a{
-    text-decoration: none;
-    color: white;
-    padding: 5px;
-    border-radius: 20%;
-    transition:all 0.5s ease
-}
-
-.nav-buttons a:hover, .nav-buttons a.active  {
-    border:1px white;
-    background-color: #333;
-    color: #fff;
-  }
-
-/*Post styling*/
 
 .post-container{
     overflow-y: scroll;
@@ -218,5 +143,3 @@ nav .nav-buttons a{
 .post-footer img:hover{
     background-color: black;;
 }
-
-
