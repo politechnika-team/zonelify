@@ -34,7 +34,7 @@ function ChatRoom({ recipientId }) {
         id: doc.id,
         ...doc.data(),
       }));
-      messageList.orderBy()
+      
       setMessages(messageList);
     });
 
