@@ -14,13 +14,24 @@ export default function Login() {
     const email = e.target[0].value;
     const password = e.target[1].value;
 
+    if (!email) {
+      setErr("Please enter your email");
+      return;
+    }
+
+    if (!password) {
+      setErr("Please enter your password");
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (err) {
-      setErr(true);
+      setErr("Invalid email or password");
     }
   };
+
   return (
     <div className="login-site">
       <div className="logo-container">
@@ -33,6 +44,13 @@ export default function Login() {
       <div className="login-wrapper">
         <div className="login-container">
           <h1>Login</h1>
+          {err && (
+            <b>
+              <p style={{ color: "red" }} className="error">
+                {err}
+              </p>
+            </b>
+          )}
           <form onSubmit={handleSubmit}>
             <div className="input-container">
               <label htmlFor="email">Email</label>
