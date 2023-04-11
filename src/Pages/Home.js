@@ -1,5 +1,8 @@
 import { useState, useEffect, useContext } from "react";
+<<<<<<< HEAD
 
+=======
+>>>>>>> d6ccc847dff4bbf93f864837703bc931d28d4537
 import Post from "../components/Post";
 import CreatePost from "../components/CreatePost";
 import { getDocs, collection } from "firebase/firestore";
@@ -23,7 +26,7 @@ export default function MainSite() {
   }, []);
 
   return (
-    <div className="mainsite-container pages-container">
+    <div className="pages-container">
       <div className="home-container">
         <div className="home-header">
           <h1>Home</h1>
