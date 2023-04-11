@@ -4,7 +4,7 @@ import CreatePost from "../components/CreatePost";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
-import "../css/Home.css"
+import "../css/Home.css";
 
 export default function MainSite() {
   const { currentUser } = useContext(AuthContext);

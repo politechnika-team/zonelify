@@ -24,7 +24,6 @@ export default function Profile() {
     upload(photo, currentUser, setLoading);
   }
 
-
   useEffect(() => {
     if (currentUser?.photoURL) setPhotoURL(currentUser.photoURL);
   }, [currentUser]);
