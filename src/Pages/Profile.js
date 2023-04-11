@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { upload } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+import "../css/Profile.css";
 
 export default function Profile() {
   const { currentUser } = useContext(AuthContext);
@@ -30,7 +31,7 @@ export default function Profile() {
   }, [currentUser]);
 
   return (
-    <div className="mainsite-container">
+    <div className="mainsite-container pages-container">
       <Navbar />
       <div className="home-container">
         <div className="home-header">

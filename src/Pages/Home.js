@@ -5,6 +5,7 @@ import CreatePost from "../components/CreatePost";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+import "../css/Home.css"
 
 export default function MainSite() {
   const { currentUser } = useContext(AuthContext);
@@ -22,8 +23,7 @@ export default function MainSite() {
   }, []);
 
   return (
-    <div className="mainsite-container">
-      <Navbar />
+    <div className="mainsite-container pages-container">
       <div className="home-container">
         <div className="home-header">
           <h1>Home</h1>
