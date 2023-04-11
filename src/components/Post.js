@@ -25,7 +25,7 @@ export default function Tweet({
 
   const likesDoc = query(likesRef, where("postId", "==", postId));
 
-  console.log(currentUser.uid);
+
   const getLikes = async () => {
     const data = await getDocs(likesDoc);
     setLikes(data.docs.map((doc) => ({ userId: doc.data().userId })));

@@ -1,6 +1,6 @@
 import { React, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+
 import { upload } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 import "../css/Profile.css";
@@ -24,15 +24,13 @@ export default function Profile() {
     upload(photo, currentUser, setLoading);
   }
 
-  console.log(currentUser.displayName);
 
   useEffect(() => {
     if (currentUser?.photoURL) setPhotoURL(currentUser.photoURL);
   }, [currentUser]);
 
   return (
-    <div className="mainsite-container pages-container">
-      <Navbar />
+    <div className="pages-container">
       <div className="home-container">
         <div className="home-header">
           <h1>Profile</h1>

@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import CreatePost from "../components/CreatePost";
 import { getDocs, collection } from "firebase/firestore";
@@ -23,7 +22,7 @@ export default function MainSite() {
   }, []);
 
   return (
-    <div className="mainsite-container pages-container">
+    <div className="pages-container">
       <div className="home-container">
         <div className="home-header">
           <h1>Home</h1>

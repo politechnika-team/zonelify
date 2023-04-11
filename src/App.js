@@ -51,7 +51,7 @@ export default function App() {
             }
           />
           <Route
-            path="profile"
+            path="chat"
             element={
               <ProtectedRoute>
                 <Chat />

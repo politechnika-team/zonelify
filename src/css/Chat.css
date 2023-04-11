@@ -1,0 +1,29 @@
+
+.chat-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+    min-width: 70%;
+    z-index: 10;
+    z-index: 10;
+}
+
+.pages-container{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 25%; /* match the width of the Sidebar */
+    right: 0;
+    bottom: 0;
+  }
+
+
+
+
+
+
+  /* z neta */
+  
+
