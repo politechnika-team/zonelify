@@ -1,13 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 export default function Register() {
-  const [err, setErr] = useState(false);
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -29,7 +28,11 @@ export default function Register() {
 
       navigate("/");
     } catch (error) {
-      setErr(true);
+      if (error.code === "auth/weak-password") {
+        setError("Password should be at least 6 characters");
+      } else {
+        setError("Invalid email");
+      }
     }
   };
 
@@ -71,7 +74,13 @@ export default function Register() {
             <div className="btn-container">
               <button className="login-btn">Sign up</button>
             </div>
-            {/* {err && <span>Something went wrong</span>} */}
+            {error && (
+              <b>
+                <p style={{ color: "red" }} className="error">
+                  {error}
+                </p>
+              </b>
+            )}
           </form>
           <p>
             You do have account? <Link to="/login">Log In</Link>
