@@ -34,7 +34,7 @@ function ChatRoom({ recipientId }) {
         id: doc.id,
         ...doc.data(),
       }));
-      
+
       setMessages(messageList);
     });
 
@@ -58,7 +58,7 @@ function ChatRoom({ recipientId }) {
 
   return (
     <div>
-      <div>
+      <div className="messages-align">
         {messages.map((message) => (
           <div
             key={message.id}

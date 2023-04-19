@@ -47,6 +47,7 @@
 
 .messages {
   display: flex;
+  width: 200px;
   flex-direction: column;
 }
 
@@ -59,6 +60,12 @@
   word-wrap: break-word;
 }
 
+
+.messages-align{
+  display:flex;
+  flex-direction: column;
+  width: 400px;
+}
 .sent {
   align-self: flex-end;
   background-color: green;

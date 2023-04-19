@@ -84,6 +84,9 @@
     scrollbar-width: none;
 }
 
+
+
+
 .post-container::-webkit-scrollbar{
     display: none;
 }
