@@ -4,15 +4,25 @@ import { AuthContext } from "../context/AuthContext";
 import { db, upload } from "../firebase";
 import { updateProfile } from "firebase/auth";
 import "../css/EditProfile.css";
-import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
-export default function EditProfile({ open, children, onClose }) {
+export default function EditProfile({ open, onClose }) {
   const { currentUser } = useContext(AuthContext);
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [nickname, setNickname] = useState("");
   const [userDescription, setUserDescription] = useState("");
   const [showEditProfile, setShowEditProfile] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleChange(e) {
     if (e.target.files[0]) {
@@ -24,16 +34,32 @@ export default function EditProfile({ open, children, onClose }) {
       await updateProfile(currentUser, {
         displayName: nickname,
       });
+
+      const usersRef = collection(db, "users");
+      const userDoc = doc(usersRef, currentUser.uid);
+      await updateDoc(userDoc, { displayName: nickname });
+
+      // Update displayName in all posts for current user
+      const postsRef = collection(db, "posts");
+      const q = query(postsRef, where("userId", "==", currentUser.uid));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (postDocSnap) => {
+        const postDoc = doc(postsRef, postDocSnap.id);
+        await updateDoc(postDoc, { username: nickname });
+      });
     }
     if (photo) {
       upload(photo, currentUser, setLoading);
+      //TODO
+      //JAKIS FIX NA NOWYCH UZYTKOWNIKOW BO NIE UPDATUJE AVATARA JAK JEST DEFAULTOWY A PO ZMIANIE AVATARA
+      // I DODANIU POSTU NORMALNIE UPDATUJE
+      //TODO
     }
     if (userDescription && userDescription.length <= 100) {
       const usersRef = collection(db, "users");
       const userDoc = doc(usersRef, currentUser.uid);
       await updateDoc(userDoc, { description: userDescription });
     }
-
     //TODO
     //DODAC CZYSZCZENIE INPUTOW ORAZ REFRESH STRONY PO UPLOADZIE DANYCH
     //TODO

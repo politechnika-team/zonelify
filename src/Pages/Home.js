@@ -48,10 +48,7 @@ export default function Home() {
         <div className="home-header">
           <h1>Home</h1>
         </div>
-        <CreatePost
-          photoURL={currentUser?.photoURL}
-          currentUser={currentUser}
-        />
+        <CreatePost />
         <div className="post-container">
           {/*tweet section printed from firebase */}
           {postsList?.map((post) => (

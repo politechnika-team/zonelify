@@ -15,6 +15,8 @@ export default function Register() {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const description = "";
+    const photoURL =
+      "https://firebasestorage.googleapis.com/v0/b/zonelifyv2.appspot.com/o/profile-default.jpg?alt=media&token=7ebfddc9-b58f-400c-83c4-09497b7ae683";
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
@@ -23,6 +25,7 @@ export default function Register() {
         displayName,
         email,
         description,
+        photoURL,
       });
       await updateProfile(auth.currentUser, {
         displayName: displayName,

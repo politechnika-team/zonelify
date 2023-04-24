@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,9 +6,10 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "../css/Home.css";
+import { AuthContext } from "../context/AuthContext";
 
-export default function CreatePost({ photoURL, currentUser }) {
-  const [user] = useAuthState(auth);
+export default function CreatePost() {
+  const { currentUser } = useContext(AuthContext);
 
   const schema = yup.object().shape({
     content: yup
@@ -44,8 +45,8 @@ export default function CreatePost({ photoURL, currentUser }) {
     //adding doc to posts collection
     await addDoc(postsRef, {
       content: data.content,
-      userId: user?.uid,
-      username: user?.displayName,
+      userId: currentUser?.uid,
+      username: currentUser?.displayName,
       photoURL: currentUser?.photoURL,
       creationDate: currentDate
         .toISOString()
@@ -60,8 +61,8 @@ export default function CreatePost({ photoURL, currentUser }) {
     <div className="dropin-container">
       <form onSubmit={handleSubmit(onCreatePost)}>
         <div className="dropin-input">
-          {/*Dorobic w stylach loading na avatary bo sie brzydko ladują - przechodzą z alta na default i dopiero  potem na user avatar*/}
-          <img src={photoURL} alt="avatar" />
+          {/*Dorobic w stylach loading na avatary bo sie brzydko ladują - przechodzą z alta na default i dopiero  potem na currentUser avatar*/}
+          <img src={currentUser.photoURL} alt="avatar" />
           <input
             type="text"
             placeholder="Write something!"

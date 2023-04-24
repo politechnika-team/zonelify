@@ -4,7 +4,7 @@ import Post from "../components/Post";
 import { AuthContext } from "../context/AuthContext";
 import "../css/Profile.css";
 import { db } from "../firebase";
-import { collection, doc, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 export default function Profile() {
   const { currentUser } = useContext(AuthContext);
@@ -14,9 +14,10 @@ export default function Profile() {
   const usersRef = collection(db, "users");
   const [userDescription, setUserDescription] = useState();
 
-  const getPosts = async () => {
-    const data = await getDocs(postsRef);
+  const q = query(postsRef, orderBy("creationTimestamp", "desc"));
 
+  const getPosts = async () => {
+    const data = await getDocs(q);
     setPostsList(
       data.docs
         .filter((doc) => doc.data().userId === currentUser.uid)
