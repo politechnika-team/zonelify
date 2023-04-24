@@ -83,7 +83,7 @@
   color:#050505;
 }
 
-form{
+.chat-form{
   display: flex;
   flex: 1;
   position: absolute;

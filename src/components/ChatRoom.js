@@ -79,7 +79,7 @@ function ChatRoom({ recipientId }) {
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={sendMessage}>
+      <form className="chat-form" onSubmit={sendMessage}>
         <input
           type="text"
           value={messageText}
