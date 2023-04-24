@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import ReactDom from "react-dom";
 import { AuthContext } from "../context/AuthContext";
 import { db, upload } from "../firebase";
 import { updateProfile } from "firebase/auth";
@@ -43,12 +44,14 @@ export default function EditProfile({ open, children, onClose }) {
     setShowEditProfile(true);
   }, []);
   if (!open) return null;
-  return (
+  return ReactDom.createPortal(
     <>
       <div className="overlay-styles" />
       <div className="modal-container">
         <div className="edit-profile-container">
-          <button onClick={onClose}>close modal</button>
+          <button className="edit-btn" onClick={onClose}>
+            Exit
+          </button>
           <label htmlFor="avatar" className="custom-upload-button">
             Upload your avatar:{" "}
           </label>
@@ -74,6 +77,7 @@ export default function EditProfile({ open, children, onClose }) {
           </button>
         </div>
       </div>
-    </>
+    </>,
+    document.getElementById("portal")
   );
 }

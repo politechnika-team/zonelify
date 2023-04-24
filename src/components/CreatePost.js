@@ -29,7 +29,19 @@ export default function CreatePost({ photoURL, currentUser }) {
   const postsRef = collection(db, "posts");
 
   const onCreatePost = async (data) => {
+    //getting current date and correct symbols
     const currentDate = new Date();
+    const minutes =
+      currentDate.getMinutes() < 10
+        ? "0" + currentDate.getMinutes()
+        : currentDate.getMinutes();
+
+    const hours =
+      currentDate.getHours() < 10
+        ? "0" + currentDate.getHours()
+        : currentDate.getHours();
+
+    //adding doc to posts collection
     await addDoc(postsRef, {
       content: data.content,
       userId: user?.uid,
@@ -39,7 +51,8 @@ export default function CreatePost({ photoURL, currentUser }) {
         .toISOString()
         .replace("T", " ")
         .substring(0, 10),
-      creationHour: currentDate.getHours() + ":" + currentDate.getMinutes(),
+      creationHour: hours + ":" + minutes,
+      creationTimestamp: currentDate.getTime(),
     });
   };
 

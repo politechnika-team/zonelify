@@ -19,20 +19,16 @@ export default function Home() {
   const [postsList, setPostsList] = useState(null);
   const postsRef = collection(db, "posts");
 
+  const q = query(postsRef, orderBy("creationTimestamp", "desc"));
+
   const getPosts = async () => {
-    const data = await getDocs(
-      query(
-        postsRef,
-        orderBy("creationDate", "desc"),
-        orderBy("creationHour", "desc")
-      )
-    );
+    const data = await getDocs(q);
     setPostsList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   useEffect(() => {
     // Listen for changes in the posts collection
-    const unsubscribe = onSnapshot(postsRef, (snapshot) => {
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       setPostsList(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
     return () => {

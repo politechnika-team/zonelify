@@ -54,7 +54,9 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
+  max-width: 40vw;
 }
+
 .post-footer{
     display: flex;
     width: 40%;
@@ -86,7 +88,6 @@
 
 .post-body{
     flex: 1;
-    max-width: 800px;
     padding: 10px;
 }
 

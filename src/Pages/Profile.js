@@ -80,10 +80,13 @@ export default function Profile() {
             <Post
               key={post.id}
               postId={post.id}
+              creatorId={post.userId}
               content={post.content}
               username={post.username}
               photoURL={post.photoURL}
               currentUser={currentUser}
+              creationDate={post.creationDate}
+              creationHour={post.creationHour}
             />
           ))}
         </div>

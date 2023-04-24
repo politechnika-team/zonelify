@@ -29,6 +29,11 @@
     
 }
 
+.edit-profile-container .edit-btn:first-child{
+    width: fit-content;
+    margin: 0 auto;
+}
+
 .edit-profile-container label {
     margin-top: 10px;
 }
