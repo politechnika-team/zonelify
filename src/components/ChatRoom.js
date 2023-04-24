@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import {
   getFirestore,
   collection,
@@ -15,6 +15,7 @@ function ChatRoom({ recipientId }) {
   const { currentUser } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     if (!recipientId) {
@@ -26,7 +27,8 @@ function ChatRoom({ recipientId }) {
     const q = query(
       messagesRef,
       where("senderId", "in", [getAuth().currentUser.uid, recipientId]),
-      where("recipientId", "in", [getAuth().currentUser.uid, recipientId])
+      where("recipientId", "in", [getAuth().currentUser.uid, recipientId]),
+      orderBy("createdAt", "asc")
     );
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -34,12 +36,16 @@ function ChatRoom({ recipientId }) {
         id: doc.id,
         ...doc.data(),
       }));
-      
+
       setMessages(messageList);
     });
 
     return () => unsubscribe();
   }, [recipientId]);
+
+  useEffect(() => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   function sendMessage(event) {
     event.preventDefault();
@@ -51,6 +57,7 @@ function ChatRoom({ recipientId }) {
       text: messageText,
       senderId: getAuth().currentUser.uid,
       recipientId: recipientId,
+      createdAt: new Date(),
     });
 
     setMessageText("");
@@ -58,7 +65,7 @@ function ChatRoom({ recipientId }) {
 
   return (
     <div>
-      <div>
+      <div className="messages-align">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -69,6 +76,7 @@ function ChatRoom({ recipientId }) {
             <p>{message.text}</p>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <form onSubmit={sendMessage}>
@@ -76,6 +84,7 @@ function ChatRoom({ recipientId }) {
           type="text"
           value={messageText}
           onChange={(event) => setMessageText(event.target.value)}
+          placeholder="Type a message"
         />
         <button type="submit">Send</button>
       </form>
