@@ -27,5 +27,5 @@ export async function upload(file, currentUser, setLoading) {
   const photoURL = await getDownloadURL(fileRef);
   updateProfile(currentUser, { photoURL: photoURL });
   setLoading(false);
-  alert("Uploaded file!");
+  alert("Avatar has been changed!");
 }

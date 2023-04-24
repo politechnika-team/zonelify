@@ -1,11 +1,4 @@
 
-
-.profile-picture{
-    border-radius: 50%;
-    height: 16vh
-}
-
-
 /*TODO*/
 /*ZROBIC LADNE STYLE DO BUTTONA UPLOADU*/
 input[type="file"]::file-selector-button {
@@ -23,4 +16,33 @@ input[type="file"]::file-selector-button:hover{
     background-color: black
 }
 
+/*profile styling*/
 
+
+.profile-picture{
+    border-radius: 50%;
+    height: 16vh
+}
+
+.profile-description-container{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 7px solid #EBEEF0;
+    padding-bottom: 10px;
+}
+
+
+/*DESCRIPTION STYLES*/
+
+.profile-image-description p{
+    margin: 30px;
+    width: 300px;
+    word-wrap:break-word;
+}
+
+.profile-image-description{
+    display:flex;
+}

@@ -6,15 +6,25 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    height: 100vh;
+    height: 100%;
     min-width: 70%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.home-container::-webkit-scrollbar{
+    display: none;
 }
 
 .home-header{
+    top: 0;
+    position: sticky;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 8%;
+    background-color: white;
     border-bottom: 1px solid #EBEEF0
 }
 
@@ -75,82 +85,4 @@
     background-color: black;
     color: white;
     cursor: not-allowed
-}
-
-.post-container{
-    overflow-y: scroll;
-    height:73%;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.post-container::-webkit-scrollbar{
-    display: none;
-}
-
-.post-avatar img{
-    border-radius: 50%;
-    height: 40px;
-}
-
-.post{
-    display:flex;
-    align-items: flex-start;
-    border-bottom: 1px solid #EBEEF0;
-    padding: 10px 20px 10px 20px;
-}
-
-.post-body img{
-    width: 450px;
-    object-fit: contain;
-    border-radius: 20px;
-}
-
-.post-footer{
-    display: flex;
-    width: 40%;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.post-badge{
-    font-size: 14px !important;
-    color: var(--twitter-color);
-    margin-right: 5px;
-}
-
-.post-headerSpecial{
-    font-weight: 600;
-    font-size: 12px;
-    color: gray;
-}
-
-.post-headerText h3{
-    font-size: 15px;
-    margin-bottom: 5px;
-}
-
-.post-headerDescription{
-    margin-bottom: 10px;
-    font-size: 15px;
-}
-
-.post-body{
-    flex: 1;
-    padding: 10px;
-}
-
-.post-avatar{
-    padding: 20px;
-}
-
-
-.post-footer img{
-    width: 25px;
-    height: 40px;
-}
-
-
-.post-footer img:hover{
-    background-color: black;;
 }

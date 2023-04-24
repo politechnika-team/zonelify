@@ -16,7 +16,7 @@ export default function CreatePost({ photoURL, currentUser }) {
       .required("In order to drop in you need to write something!!!"),
     //TODO
     // dodać lajki dislajki fajwority
-    // po dodaniu postu i zmiany avataru przez user'a avatar w poscie sie nie zmienia TRZEBA TO ZROBIC
+
     //TODO
   });
   //resolver to useForm
@@ -29,11 +29,17 @@ export default function CreatePost({ photoURL, currentUser }) {
   const postsRef = collection(db, "posts");
 
   const onCreatePost = async (data) => {
+    const currentDate = new Date();
     await addDoc(postsRef, {
       content: data.content,
       userId: user?.uid,
       username: user?.displayName,
       photoURL: currentUser?.photoURL,
+      creationDate: currentDate
+        .toISOString()
+        .replace("T", " ")
+        .substring(0, 10),
+      creationHour: currentDate.getHours() + ":" + currentDate.getMinutes(),
     });
   };
 

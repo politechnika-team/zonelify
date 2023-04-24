@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import icon1 from "../images/post-icon1.svg";
 import icon2 from "../images/post-icon2.svg";
 import icon3 from "../images/post-icon3.svg";
+import trashIcon from "../images/trash.png";
 import { db } from "../firebase";
 import {
   collection,
@@ -11,20 +12,24 @@ import {
   getDocs,
   deleteDoc,
   doc,
+  onSnapshot,
+  updateDoc,
 } from "firebase/firestore";
 
-export default function Tweet({
+export default function Post({
   content,
   username,
   photoURL,
   currentUser,
   postId,
+  creatorId,
+  creationDate,
+  creationHour,
 }) {
   const [likes, setLikes] = useState(null);
   const likesRef = collection(db, "likes");
 
   const likesDoc = query(likesRef, where("postId", "==", postId));
-
 
   const getLikes = async () => {
     const data = await getDocs(likesDoc);
@@ -74,11 +79,20 @@ export default function Tweet({
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await deleteDoc(doc(db, "posts", postId));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const hasUserLiked = likes?.find((like) => like.userId === currentUser?.uid);
 
   useEffect(() => {
     getLikes();
   }, []);
+
   return (
     <div className="post">
       <div className="post-avatar">
@@ -112,6 +126,17 @@ export default function Tweet({
           <img alt="" src={icon3} />
         </div>
       </div>
+      {currentUser.uid === creatorId ? (
+        <img
+          className="trash-icon"
+          alt="Delete Post"
+          src={trashIcon}
+          onClick={handleDelete}
+        />
+      ) : (
+        ""
+      )}
+      <p className="date-paragraph">{creationHour + " " + creationDate}</p>
     </div>
   );
 }
