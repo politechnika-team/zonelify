@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, updateProfile } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { collection, doc, getFirestore, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
@@ -26,6 +26,9 @@ export async function upload(file, currentUser, setLoading) {
   const snapshot = await uploadBytes(fileRef, file);
   const photoURL = await getDownloadURL(fileRef);
   updateProfile(currentUser, { photoURL: photoURL });
+  const usersRef = collection(db, "users");
+  const userDoc = doc(usersRef, currentUser.uid);
+  await updateDoc(userDoc, { photoURL: photoURL });
   setLoading(false);
   alert("Avatar has been changed!");
 }

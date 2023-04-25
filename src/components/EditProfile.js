@@ -50,6 +50,22 @@ export default function EditProfile({ open, onClose }) {
     }
     if (photo) {
       upload(photo, currentUser, setLoading);
+      const postsRef = collection(db, "posts");
+      const q = query(postsRef, where("userId", "==", currentUser.uid));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (postDocSnap) => {
+        const postDoc = doc(postsRef, postDocSnap.id);
+        const postData = postDocSnap.data();
+
+        // TO DZIALA ALE DOPIERO ZA DRUGIM RAZEM JAK SIE ZUPLOADUJE NA NOWYM UZYTKOWNIKU AVATAR TO DODAJE NOWY AVATAR DLA JEGO POSTU
+        if (
+          postData.photoURL ===
+          "https://firebasestorage.googleapis.com/v0/b/zonelifyv2.appspot.com/o/profile-default.jpg?alt=media&token=7ebfddc9-b58f-400c-83c4-09497b7ae683"
+        ) {
+          // Update the avatar property with the new URL
+          await updateDoc(postDoc, { photoURL: currentUser.photoURL });
+        }
+      });
       //TODO
       //JAKIS FIX NA NOWYCH UZYTKOWNIKOW BO NIE UPDATUJE AVATARA JAK JEST DEFAULTOWY A PO ZMIANIE AVATARA
       // I DODANIU POSTU NORMALNIE UPDATUJE

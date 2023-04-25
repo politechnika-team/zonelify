@@ -39,13 +39,12 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #ccc;
   margin-bottom: 10px;
   cursor: pointer;
 }
 
 .user:hover {
-  background-color: #aaa;
+  transform: scale(1.1);
 }
 
 .messages {

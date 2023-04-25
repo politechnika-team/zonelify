@@ -25,7 +25,17 @@ function UsersList({ onSelectUser }) {
     <div>
       <ul>
         {users.map((user) => (
-          <li className="user" key={user.id} onClick={() => onSelectUser(user.id)}>
+          <li
+            style={{
+              backgroundImage: "url(" + user.photoURL + ")",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+            className="user"
+            key={user.id}
+            onClick={() => onSelectUser(user.id)}
+          >
             {user.displayName}
           </li>
         ))}

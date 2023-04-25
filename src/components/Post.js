@@ -26,9 +26,12 @@ export default function Post({
   creationDate,
   creationHour,
 }) {
+  //POST DELETE SECTION
+
+  //POST DELETE SECTION
+
   const [likes, setLikes] = useState(null);
   const likesRef = collection(db, "likes");
-
   const likesDoc = query(likesRef, where("postId", "==", postId));
 
   const getLikes = async () => {
