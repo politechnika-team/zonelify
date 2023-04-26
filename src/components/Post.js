@@ -27,7 +27,7 @@ export default function Post({
   creationHour,
 }) {
   //POST DELETE SECTION
-
+  const [showOptions, setShowOptions] = useState(false);
   //POST DELETE SECTION
 
   const [likes, setLikes] = useState(null);
@@ -82,6 +82,10 @@ export default function Post({
     }
   };
 
+  const showDeleteButtons = () => {
+    setShowOptions(true);
+  };
+
   const handleDelete = async () => {
     try {
       await deleteDoc(doc(db, "posts", postId));
@@ -129,12 +133,18 @@ export default function Post({
           <img alt="" src={icon3} />
         </div>
       </div>
+      {showOptions && (
+        <>
+          <button onClick={handleDelete}>Yes</button>
+          <button onClick={() => setShowOptions(false)}>No</button>
+        </>
+      )}
       {currentUser.uid === creatorId ? (
         <img
           className="trash-icon"
           alt="Delete Post"
           src={trashIcon}
-          onClick={handleDelete}
+          onClick={showDeleteButtons}
         />
       ) : (
         ""
