@@ -138,3 +138,11 @@
   font-size: 0.65em;
   color: grey;
 }
+
+/*delete buttons styling*/
+
+.delete-btns{
+  position: absolute;
+  right: 5%;
+  
+}

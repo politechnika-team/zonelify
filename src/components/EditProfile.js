@@ -20,7 +20,6 @@ export default function EditProfile({ open, onClose }) {
   const [loading, setLoading] = useState(false);
   const [nickname, setNickname] = useState("");
   const [userDescription, setUserDescription] = useState("");
-  const [showEditProfile, setShowEditProfile] = useState(false);
 
   const navigate = useNavigate();
 
@@ -82,9 +81,7 @@ export default function EditProfile({ open, onClose }) {
   }
 
   //USEEFFECT FOR CSS ANIMATION
-  useEffect(() => {
-    setShowEditProfile(true);
-  }, []);
+
   if (!open) return null;
   return ReactDom.createPortal(
     <>

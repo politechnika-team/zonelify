@@ -15,6 +15,7 @@ import {
   onSnapshot,
   updateDoc,
 } from "firebase/firestore";
+import DeletePost from "./DeletePost";
 
 export default function Post({
   content,
@@ -27,7 +28,7 @@ export default function Post({
   creationHour,
 }) {
   //POST DELETE SECTION
-  const [showOptions, setShowOptions] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   //POST DELETE SECTION
 
   const [likes, setLikes] = useState(null);
@@ -82,10 +83,6 @@ export default function Post({
     }
   };
 
-  const showDeleteButtons = () => {
-    setShowOptions(true);
-  };
-
   const handleDelete = async () => {
     try {
       await deleteDoc(doc(db, "posts", postId));
@@ -133,21 +130,22 @@ export default function Post({
           <img alt="" src={icon3} />
         </div>
       </div>
-      {showOptions && (
-        <>
-          <button onClick={handleDelete}>Yes</button>
-          <button onClick={() => setShowOptions(false)}>No</button>
-        </>
-      )}
       {currentUser.uid === creatorId ? (
         <img
           className="trash-icon"
           alt="Delete Post"
           src={trashIcon}
-          onClick={showDeleteButtons}
+          onClick={() => setIsOpen(true)}
         />
       ) : (
         ""
+      )}
+      {isOpen && (
+        <DeletePost
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          handleDelete={handleDelete}
+        />
       )}
       <p className="date-paragraph">{creationHour + " " + creationDate}</p>
     </div>
