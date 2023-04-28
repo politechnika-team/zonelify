@@ -10,6 +10,7 @@ import Register from "./Pages/Register";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import SideMenu from "./SideMenu";
+import Search from "./Pages/Search";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Chat from "./Pages/Chat";
@@ -43,7 +44,7 @@ export default function App() {
             }
           />
           <Route
-            path="profile"
+            path="profile/:displayName"
             element={
               <ProtectedRoute>
                 <Profile />
@@ -55,6 +56,15 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Chat />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="search"
+            element={
+              <ProtectedRoute>
+                <Search />
               </ProtectedRoute>
             }
           />

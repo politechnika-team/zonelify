@@ -12,7 +12,7 @@
     transition: transform 0.5s ease;
     position: relative;
     opacity: 0; /* start with opacity 0 */
-    animation: fade-in 1s ease-in-out forwards;
+    animation: fade-in 0.9s ease-in-out forwards;
 }
 
 
@@ -25,36 +25,7 @@
   }
 }
 
-.slide-in{
-    animation: slideIn 1s forwards;
-  }
-  
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-
-  .new-post {
-    transform: scale(0);
-    opacity: 0;
-    animation: new-post-animation 0.5s ease forwards;
-  }
-  
-  @keyframes new-post-animation {
-    0% {
-      transform: scale(0);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
+ 
 .post-body img{
     width: 450px;
     object-fit: contain;

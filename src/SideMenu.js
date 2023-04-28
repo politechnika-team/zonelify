@@ -7,7 +7,7 @@ import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-import "./css/SideMenu.css"
+import "./css/SideMenu.css";
 
 const SideMenu = () => {
   const { currentUser } = useContext(AuthContext);
@@ -27,7 +27,8 @@ const SideMenu = () => {
           <NavLink to="/chat">Chat</NavLink>
           <NavLink to="/notes">Notes</NavLink>
           <NavLink to="/daily">Daily</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
+          <NavLink to={`/profile/${currentUser.displayName}`}>Profile</NavLink>
+          <NavLink to="/search">Search</NavLink>
         </div>
         <button onClick={handleLogOut} className="logout-btn">
           Log Out
