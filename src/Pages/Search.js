@@ -1,28 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import "../css/Search.css";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import ShowUsers from "../components/ShowUsers";
+import debounce from "lodash/debounce";
 
 export default function Search() {
   const [searchText, setSearchText] = useState("");
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const userRef = collection(db, "users");
 
-  const getUsers = async () => {
-    const userDoc = query(userRef);
+  const getUsers = async (searchText) => {
+    setLoading(true);
+    const userDoc = query(userRef, where("displayName", ">=", searchText));
     const data = await getDocs(userDoc);
     setUsers(data.docs.map((doc) => ({ ...doc.data(), uid: doc.id })));
+    setLoading(false);
   };
 
-  const showUsers = () => {
-    getUsers();
+  // Debounce the search input to avoid unnecessary API calls
+  const debouncedGetUsers = useMemo(
+    () => debounce((searchText) => getUsers(searchText), 500),
+    []
+  );
+
+  const handleSearch = (e) => {
+    const searchText = e.target.value;
+    setSearchText(searchText);
+    if (searchText === "") {
+      setUsers([]);
+    } else {
+      debouncedGetUsers(searchText.trim());
+    }
   };
 
-  //clearing the setUsers component on empty input
   useEffect(() => {
-    if (searchText == "") setUsers([]);
-  }, [searchText]);
+    return () => {
+      // Cancel the debounced function when the component unmounts
+      debouncedGetUsers.cancel();
+    };
+  }, [debouncedGetUsers]);
 
   return (
     <div className="pages-container">
@@ -32,24 +50,24 @@ export default function Search() {
         </div>
         <div className="search-container">
           <label htmlFor="search">Type in user nickname</label>
-          <input
-            type="text"
-            name="search"
-            onChange={(e) => setSearchText(e.target.value)}
-          ></input>
-          <button onClick={showUsers}>Search</button>
+          <input type="text" name="search" onChange={handleSearch}></input>
+          <button onClick={() => getUsers(searchText)}>Search</button>
         </div>
         <div className="post-container">
-          {/*users section printed from firebase */}
-          {users.map((user, index) => (
-            <ShowUsers
-              key={index}
-              displayName={user.displayName}
-              email={user.email}
-              searchText={searchText}
-              photoURL={user.photoURL}
-            />
-          ))}
+          {/* Render a loading indicator if the data is still loading */}
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            users.map((user, index) => (
+              <ShowUsers
+                key={index}
+                displayName={user.displayName}
+                email={user.email}
+                searchText={searchText}
+                photoURL={user.photoURL}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

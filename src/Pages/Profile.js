@@ -4,7 +4,7 @@ import Post from "../components/Post";
 import { AuthContext } from "../context/AuthContext";
 import "../css/Profile.css";
 import { db } from "../firebase";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 
 export default function Profile() {
@@ -16,7 +16,8 @@ export default function Profile() {
   const [postsList, setPostsList] = useState(null);
   const postsRef = collection(db, "posts");
   const usersRef = collection(db, "users");
-  const [userDescription, setUserDescription] = useState();
+  const [userPhoto, setUserPhoto] = useState(null);
+  const [description, setDescription] = useState(null);
 
   const q = query(postsRef, orderBy("creationTimestamp", "desc"));
 
@@ -24,24 +25,29 @@ export default function Profile() {
     const data = await getDocs(q);
     setPostsList(
       data.docs
-        .filter((doc) => doc.data().userId === currentUser.uid)
+        .filter((doc) => doc.data().username === displayName)
         .map((doc) => ({ ...doc.data(), id: doc.id }))
     );
   };
 
-  const getDescription = async () => {
-    const data2 = await getDocs(usersRef);
-    setUserDescription(
-      data2.docs
-        .filter((doc) => doc.data().uid === currentUser.uid)
-        .map((doc) => ({ ...doc.data(), id: doc.id }))[0]?.description
-    );
+  const getUser = async (displayName) => {
+    const userDoc = query(usersRef, where("displayName", "==", displayName));
+    const data = await getDocs(userDoc);
+    return data.docs.map((doc) => ({ ...doc.data(), uid: doc.id }))[0];
   };
 
   useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getUser(displayName);
+      setUserPhoto(user.photoURL);
+      setDescription(user.description);
+    };
+    fetchUser();
+  }, [displayName]);
+
+  useEffect(() => {
     getPosts();
-    getDescription();
-  }, [postsList]);
+  }, [displayName]);
 
   const [photoURL, setPhotoURL] = useState(
     "https://firebasestorage.googleapis.com/v0/b/zonelifyv2.appspot.com/o/profile-default.jpg?alt=media&token=7ebfddc9-b58f-400c-83c4-09497b7ae683"
@@ -65,17 +71,19 @@ export default function Profile() {
           <div className="profile-image-description">
             <img
               className="profile-picture"
-              src={photoURL}
+              src={userPhoto}
               alt="user profile"
             />
-            <p>{userDescription}</p>
+            <p>{description}</p>
           </div>
           <p>
-            <b>@{currentUser.displayName}</b>
+            <b>@{displayName}</b>
           </p>
-          <button className="edit-btn" onClick={() => setIsOpen(true)}>
-            Edit Profile
-          </button>
+          {currentUser?.displayName === displayName && (
+            <button className="edit-btn" onClick={() => setIsOpen(true)}>
+              Edit Profile
+            </button>
+          )}
           {isOpen && (
             <EditProfile open={isOpen} onClose={() => setIsOpen(false)} />
           )}
