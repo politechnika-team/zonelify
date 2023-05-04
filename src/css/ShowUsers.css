@@ -1,3 +1,27 @@
-.users-container img{
-    width: 50px;
+
+
+.userslist-container {
+    display:flex;
+    width: 20%;
+    margin: 0 auto;
+    padding: 10px;
+    border-bottom: 1px solid #EBEEF0
 }
+
+.userslist-container  p{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.userslist-container  img{
+    width: 60px;
+    height: 60px;;
+    border-radius: 50%;
+}
+
+
+.userslist-container  a {
+    text-decoration: none;
+    color: gray;
+}
+

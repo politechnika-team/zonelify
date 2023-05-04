@@ -1,10 +1,57 @@
 .search-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2%;
+    width: 50%;
+    margin:0 auto;
 }
 
 .search-container input{
     width: 50%;
+}
+
+.search-container button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    border-style: none;
+    border-radius: 10px;
+    background-color: #6D819D;
+    color: white;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor:pointer;
+    margin: 10px auto;
+    transition: all 0.5s ease-out;
+}
+
+.search-container button:disabled{
+    background-color: black;
+    cursor: not-allowed
+}
+
+
+.users-container{
+    position: relative;
+    margin-top: 40px;
+}
+
+.material-symbols-outlined {
+    animation: spin 1s infinite linear;
+    position: absolute;
+    left: 49%;
+
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(-360deg);
+    }
 }

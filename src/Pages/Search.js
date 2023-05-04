@@ -48,10 +48,10 @@ export default function Search() {
             Search
           </button>
         </div>
-        <div className="post-container">
+        <div className="users-container">
           {/* Render a loading indicator if the data is still loading */}
           {loading ? (
-            <div>Loading...</div>
+            <span className="material-symbols-outlined">sync</span>
           ) : (
             users.map((user, index) => (
               <ShowUsers
@@ -60,6 +60,7 @@ export default function Search() {
                 email={user.email}
                 searchText={searchText}
                 photoURL={user.photoURL}
+                description={user.description}
               />
             ))
           )}

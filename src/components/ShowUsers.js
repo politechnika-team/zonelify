@@ -11,12 +11,11 @@ export default function ShowUsers({
 }) {
   if (!displayName.includes(searchText) && searchText !== "") return null;
   return (
-    <div className="users-container">
+    <div className="userslist-container">
       <img src={photoURL} />
-      <p>{displayName}</p>
-      <NavLink to={`/profile/${displayName}`}>pozdro</NavLink>
-      {description}
-      {email}
+      <NavLink to={`/profile/${displayName}`}>
+        <p>@{displayName}</p>
+      </NavLink>
     </div>
   );
 }

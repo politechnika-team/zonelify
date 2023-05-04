@@ -16,6 +16,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import DeletePost from "./DeletePost";
+import { NavLink } from "react-router-dom";
 
 export default function Post({
   content,
@@ -107,7 +108,9 @@ export default function Post({
           <div className="post-headerText">
             <h3>
               {/*tutaj albo dodajemy mozliwosc dodania nazwy pełnej profilu albo nie */}
-              <span className="post-headerSpecial"> @{username}</span>
+              <NavLink to={`/profile/${username}`}>
+                <span className="post-headerSpecial"> @{username}</span>
+              </NavLink>
             </h3>
           </div>
           <div className="post-headerDescription">
