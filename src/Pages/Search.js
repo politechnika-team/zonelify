@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState } from "react";
 import "../css/Search.css";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import ShowUsers from "../components/ShowUsers";
-import debounce from "lodash/debounce";
 
 export default function Search() {
   const [searchText, setSearchText] = useState("");
@@ -19,28 +18,15 @@ export default function Search() {
     setLoading(false);
   };
 
-  // Debounce the search input to avoid unnecessary API calls
-  const debouncedGetUsers = useMemo(
-    () => debounce((searchText) => getUsers(searchText), 500),
-    []
-  );
-
   const handleSearch = (e) => {
-    const searchText = e.target.value;
+    const searchText = e.target.value.trim();
     setSearchText(searchText);
-    if (searchText === "") {
+    console.log(searchText.length);
+    if (searchText.length === 0) {
       setUsers([]);
     } else {
-      debouncedGetUsers(searchText.trim());
     }
   };
-
-  useEffect(() => {
-    return () => {
-      // Cancel the debounced function when the component unmounts
-      debouncedGetUsers.cancel();
-    };
-  }, [debouncedGetUsers]);
 
   return (
     <div className="pages-container">
@@ -49,9 +35,18 @@ export default function Search() {
           <h1>Search for users</h1>
         </div>
         <div className="search-container">
-          <label htmlFor="search">Type in user nickname</label>
-          <input type="text" name="search" onChange={handleSearch}></input>
-          <button onClick={() => getUsers(searchText)}>Search</button>
+          <input
+            placeholder="Type in user nickname"
+            type="text"
+            name="search"
+            onChange={handleSearch}
+          ></input>
+          <button
+            disabled={searchText === ""}
+            onClick={() => getUsers(searchText)}
+          >
+            Search
+          </button>
         </div>
         <div className="post-container">
           {/* Render a loading indicator if the data is still loading */}
