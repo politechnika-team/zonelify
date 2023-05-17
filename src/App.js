@@ -14,6 +14,7 @@ import Search from "./Pages/Search";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Chat from "./Pages/Chat";
+import News from "./Pages/News";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -59,7 +60,14 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-
+          <Route
+            path="daily"
+            element={
+              <ProtectedRoute>
+                <News />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="search"
             element={

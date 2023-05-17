@@ -6,6 +6,7 @@ import "../css/Profile.css";
 import { db } from "../firebase";
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { useParams } from "react-router-dom";
+import { Switch, ConfigProvider } from "antd";
 
 export default function Profile() {
   const { currentUser } = useContext(AuthContext);
@@ -13,6 +14,7 @@ export default function Profile() {
   const { displayName } = useParams();
   // profile path
   const [isOpen, setIsOpen] = useState(false);
+  const { darkMode, setDarkMode } = useContext(AuthContext);
   const [postsList, setPostsList] = useState(null);
   const postsRef = collection(db, "posts");
   const usersRef = collection(db, "users");
@@ -59,7 +61,9 @@ export default function Profile() {
 
   return (
     <div className="pages-container">
-      <div className="home-container">
+      <div
+        className={`home-container ${darkMode ? "dark-mode" : "light-mode"}`}
+      >
         <div className="home-header">
           <h1>Profile</h1>
         </div>
@@ -87,6 +91,18 @@ export default function Profile() {
           {isOpen && (
             <EditProfile open={isOpen} onClose={() => setIsOpen(false)} />
           )}
+        </div>
+        <div className="toggle">
+          <p className="toggle-text">Dark / Light mode</p>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: "#02450e",
+              },
+            }}
+          >
+            <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+          </ConfigProvider>
         </div>
         <div className="post-container">
           {postsList?.map((post) => (

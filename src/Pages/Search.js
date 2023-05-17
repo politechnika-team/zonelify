@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import "../css/Search.css";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
@@ -8,6 +9,7 @@ export default function Search() {
   const [searchText, setSearchText] = useState("");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { darkMode, setDarkMode } = useContext(AuthContext);
   const userRef = collection(db, "users");
 
   const getUsers = async (searchText) => {
@@ -30,7 +32,7 @@ export default function Search() {
 
   return (
     <div className="pages-container">
-      <div className="home-container">
+      <div className={`home-container ${darkMode ? "dark-mode" : "light-mode"}`}>
         <div className="home-header">
           <h1>Search for users</h1>
         </div>

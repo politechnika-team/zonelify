@@ -14,7 +14,7 @@ import "../css/Home.css";
 import "../css/Post.css";
 
 export default function Home() {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, darkMode, setDarkMode } = useContext(AuthContext);
 
   const [postsList, setPostsList] = useState(null);
   const postsRef = collection(db, "posts");
@@ -44,7 +44,9 @@ export default function Home() {
 
   return (
     <div className="pages-container">
-      <div className="home-container">
+      <div
+        className={`home-container ${darkMode ? "dark-mode" : "light-mode"}`}
+      >
         <div className="home-header">
           <h1>Home</h1>
         </div>
