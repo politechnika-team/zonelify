@@ -29,11 +29,16 @@
     transition: all 0.5s ease-out;
 }
 
+
+
+.search-container button:hover{
+    background-color: #3758B1;
+}
 .search-container button:disabled{
     background-color: black;
+    color: white;
     cursor: not-allowed
 }
-
 
 .users-container{
     position: relative;

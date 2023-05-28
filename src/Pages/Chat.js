@@ -17,7 +17,9 @@ export default function Chat() {
         <UsersList onSelectUser={handleSelectUser} />
       </div>
 
-        <div className={`chat-container ${darkMode ? "dark-mode" : "light-mode"}`}>
+      <div
+        className={`chat-container ${darkMode ? "dark-mode" : "light-mode"}`}
+      >
         {recipientId ? (
           <ChatRoom recipientId={recipientId} />
         ) : (

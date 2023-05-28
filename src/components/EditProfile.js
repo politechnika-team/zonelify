@@ -103,6 +103,7 @@ export default function EditProfile({ open, onClose }) {
           <label htmlFor="nickname">New nickname </label>
           <input
             name="nickname"
+            type="text"
             onChange={(e) => setNickname(e.target.value)}
           ></input>
           <label htmlFor="nickname">Description</label>
