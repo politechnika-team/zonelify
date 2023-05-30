@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import icon2 from "../images/post-icon2.svg";
+import likeIcon from "../images/like.png"
+import likeIconSvg from "../images/like.svg"
 import trashIcon from "../images/trash.png";
 import { db } from "../firebase";
 import {
@@ -121,11 +123,11 @@ export default function Post({
           {/*TODO*/}
           <img
             alt=""
-            src={icon2}
+            src={likeIconSvg}
             onClick={hasUserLiked ? removeLike : addLike}
           />
           {/*tutaj zmienic to na nowy obrazek albo cos*/}
-          {hasUserLiked ? "polajkowane" : "niepolajkowane"}
+          
           {likes?.length && <p>{likes?.length}</p>}
         </div>
       </div>

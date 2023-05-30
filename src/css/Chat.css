@@ -10,12 +10,19 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
   height: 100%;
   width: 70%;
+}
+
+.chat-info {
+  margin: auto;
+  font-weight: bold;
+}
+
+.single-chat{
   overflow-y: scroll;
-  flex: 1/2;
+  scroll-behavior: smooth;
 }
 
 .dark-mode {
@@ -63,7 +70,7 @@
 }
 
 .message {
-  margin: 10px;
+  margin: 5px;
   padding: 10px;
   border-radius: 10px;
   color: white;
@@ -73,10 +80,11 @@
   animation: fade-in 0.5s ease-in-out forwards; /* animate to opacity 1 */
 }
 
-.messages-align{
+.messages-container{
   display:flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 .sent {

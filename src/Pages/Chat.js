@@ -23,7 +23,7 @@ export default function Chat() {
         {recipientId ? (
           <ChatRoom recipientId={recipientId} />
         ) : (
-          <p>Please select a user to chat with</p>
+          <p className="chat-info">Please select a user to chat with</p>
         )}
       </div>
     </div>

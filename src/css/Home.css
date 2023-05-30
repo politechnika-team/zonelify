@@ -125,7 +125,7 @@
 .post-footer {
   display: flex;
   width: 40%;
-  justify-content: space-between;
+  
   margin-top: 10px;
 }
 
@@ -165,6 +165,3 @@
   height: 40px;
 }
 
-.post-footer img:hover {
-  background-color: black;
-}

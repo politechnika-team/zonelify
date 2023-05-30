@@ -43,9 +43,16 @@
 
 .post-footer {
   display: flex;
+  flex: 1;
   width: 40%;
-  justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
+}
+
+.post-footer p {
+  font-size: 1.5rem;
+  margin-top: 5px;
+  color: gray;
 }
 
 .post-badge {
@@ -82,10 +89,11 @@
 .post-footer img {
   width: 25px;
   height: 40px;
+  filter: invert(32%) sepia(50%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%);
 }
 
 .post-footer img:hover {
-  background-color: black;
+  cursor: pointer;
 }
 
 /*trash styling*/

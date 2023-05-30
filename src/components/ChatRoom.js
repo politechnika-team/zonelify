@@ -15,7 +15,7 @@ function ChatRoom({ recipientId }) {
   const { currentUser } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
   useEffect(() => {
     if (!recipientId) {
@@ -44,7 +44,9 @@ function ChatRoom({ recipientId }) {
   }, [recipientId]);
 
   useEffect(() => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    const scrollContainer = messagesContainerRef.current;
+    scrollContainer.scrollTop =
+      scrollContainer.scrollHeight - scrollContainer.clientHeight;
   }, [messages]);
 
   function sendMessage(event) {
@@ -64,8 +66,8 @@ function ChatRoom({ recipientId }) {
   }
 
   return (
-    <div>
-      <div className="messages-align">
+    <div className="single-chat" ref={messagesContainerRef}>
+      <div className="messages-container">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -76,9 +78,7 @@ function ChatRoom({ recipientId }) {
             <p>{message.text}</p>
           </div>
         ))}
-        <div ref={messagesEndRef} />
       </div>
-
       <form className="chat-form" onSubmit={sendMessage}>
         <input
           type="text"
