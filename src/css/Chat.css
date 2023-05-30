@@ -1,4 +1,3 @@
-
 .pages-container {
   position: absolute;
   top: 0;
@@ -20,7 +19,7 @@
   font-weight: bold;
 }
 
-.single-chat{
+.single-chat {
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
@@ -35,17 +34,19 @@
   color: #333;
 }
 
-.users-list{
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex: 1;
-    align-items: center;
-    height: 100%;
-    width: 10%;
+.users-list {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+  align-items: center;
+  height: 100%;
+  width: 10%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .user {
@@ -80,8 +81,8 @@
   animation: fade-in 0.5s ease-in-out forwards; /* animate to opacity 1 */
 }
 
-.messages-container{
-  display:flex;
+.messages-container {
+  display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 50px;
@@ -89,17 +90,17 @@
 
 .sent {
   align-self: flex-end;
-  background-color: #6E8891;
+  background-color: #6e8891;
   color: white;
 }
 
 .received {
   align-self: flex-start;
   background-color: #e4e6eb;
-  color:#050505;
+  color: #050505;
 }
 
-.chat-form{
+.chat-form {
   display: flex;
   flex: 1;
   position: absolute;
@@ -109,7 +110,8 @@
   bottom: 0;
 }
 
-input[type="text"],input[type="password"]  {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -120,9 +122,8 @@ input[type="text"],input[type="password"]  {
   outline: none;
 }
 
-
 button[type="submit"] {
-  background-color: #6E8891;
+  background-color: #6e8891;
   color: white;
   border: none;
   border-radius: 0 5px 5px 0;

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import icon2 from "../images/post-icon2.svg";
+import React, { useEffect, useState, useContext } from "react";
 import likeIcon from "../images/like.png";
-import likeIconSvg from "../images/like.svg";
+import fillLikeIcon from "../images/like-liked.png";
 import trashIcon from "../images/trash.png";
+import whiteTrashIcon from "../images/white-trash.png";
 import { db } from "../firebase";
 import {
   collection,
@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import DeletePost from "./DeletePost";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Post({
   content,
@@ -30,7 +31,7 @@ export default function Post({
 }) {
   //POST DELETE SECTION
   const [isOpen, setIsOpen] = useState(false);
-  //POST DELETE SECTION
+  const { darkMode, setDarkMode } = useContext(AuthContext);
 
   const [likes, setLikes] = useState(null);
   const likesRef = collection(db, "likes");
@@ -123,19 +124,18 @@ export default function Post({
           {/*TODO*/}
           <img
             alt=""
-            src={likeIconSvg}
+            src={hasUserLiked ? fillLikeIcon : likeIcon}
             onClick={hasUserLiked ? removeLike : addLike}
           />
           {/*tutaj zmienic to na nowy obrazek albo cos*/}
-
-          {likes?.length && <p>{likes?.length}</p>}
+          <p>{likes?.length}</p>
         </div>
       </div>
       {currentUser.uid === creatorId ? (
         <img
           className="trash-icon"
           alt="Delete Post"
-          src={trashIcon}
+          src={darkMode ? whiteTrashIcon : trashIcon}
           onClick={() => setIsOpen(true)}
         />
       ) : (

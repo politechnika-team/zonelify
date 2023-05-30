@@ -12,7 +12,7 @@ export default function Chat() {
   }
 
   return (
-    <div className="pages-container">
+    <div className="pages-container" style={{overflow: "hidden"}}>
       <div className="users-list">
         <UsersList onSelectUser={handleSelectUser} />
       </div>

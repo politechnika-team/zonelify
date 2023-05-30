@@ -3,6 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import NewsArticle from "./NewsArticle";
 import axios from "axios";
 import "../css/News.css";
+import { RotatingLines } from "react-loader-spinner";
 
 function News() {
   const { darkMode, setDarkMode } = useContext(AuthContext);
@@ -23,11 +24,19 @@ function News() {
   return (
     <div className={`news-container ${darkMode ? "dark-mode" : "light-mode"}`}>
       <div className="all__news">
-        {data
-          ? data.articles.map((news, index) => (
-              <NewsArticle data={news} key={index} />
-            ))
-          : "Loading"}
+        {data ? (
+          data.articles.map((news, index) => (
+            <NewsArticle data={news} key={index} />
+          ))
+        ) : (
+          <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="50"
+            visible={true}
+          />
+        )}
       </div>
     </div>
   );

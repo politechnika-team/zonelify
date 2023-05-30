@@ -52,6 +52,10 @@ function ChatRoom({ recipientId }) {
   function sendMessage(event) {
     event.preventDefault();
 
+    if (messageText.trim() === "") {
+      return; // Do not send empty messages
+    }
+
     const db = getFirestore();
     const messagesRef = collection(db, "messages");
 

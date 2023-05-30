@@ -16,6 +16,7 @@ import { AuthContext } from "./context/AuthContext";
 import Chat from "./Pages/Chat";
 import News from "./Pages/News";
 import Notes from "./Pages/Notes";
+import ErrorPage from "./Pages/ErrorPage";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -86,8 +87,10 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </Router>
