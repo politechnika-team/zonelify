@@ -17,7 +17,10 @@ import { db } from "../firebase";
 export default function Notes() {
   const { currentUser, darkMode } = useContext(AuthContext);
   const [notes, setNotes] = useState([]);
-  const [addNote, setAddNote] = useState({});
+  const [addNote, setAddNote] = useState({
+    title: "",
+    content: "",
+  });
   const [id, setId] = useState("");
   const [showUpdateButton, setShowUpdateButton] = useState(false);
   const currentDate = new Date();

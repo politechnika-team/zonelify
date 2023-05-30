@@ -28,6 +28,7 @@ export default function EditProfile({ open, onClose }) {
       setPhoto(e.target.files[0]);
     }
   }
+
   async function handleClick() {
     if (nickname) {
       await updateProfile(currentUser, {
@@ -65,19 +66,13 @@ export default function EditProfile({ open, onClose }) {
           await updateDoc(postDoc, { photoURL: currentUser.photoURL });
         }
       });
-      //TODO
-      //JAKIS FIX NA NOWYCH UZYTKOWNIKOW BO NIE UPDATUJE AVATARA JAK JEST DEFAULTOWY A PO ZMIANIE AVATARA
-      // I DODANIU POSTU NORMALNIE UPDATUJE
-      //TODO
     }
     if (userDescription && userDescription.length <= 100) {
       const usersRef = collection(db, "users");
       const userDoc = doc(usersRef, currentUser.uid);
       await updateDoc(userDoc, { description: userDescription });
     }
-    //TODO
-    //DODAC CZYSZCZENIE INPUTOW ORAZ REFRESH STRONY PO UPLOADZIE DANYCH
-    //TODO
+    await navigate(`/profile/${currentUser.displayName}`);
   }
 
   //USEEFFECT FOR CSS ANIMATION

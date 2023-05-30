@@ -11,6 +11,7 @@ export default function DisplayNote({
     <div className="note">
       <h2 className="note-title">{title}</h2>
       <p className="note-content">{content}</p>
+
       <div className="note-buttons">
         <button onClick={() => getId(id)}>Delete note</button>
         <button onClick={() => getUpdatedNoteId({ content, title, id })}>
