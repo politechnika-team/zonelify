@@ -123,6 +123,7 @@ export default function Notes() {
             placeholder="Enter note title..."
             value={addNote.title}
             onChange={handleChange}
+            maxlength="18"
           ></input>
           <textarea
             className="content-input"
@@ -146,7 +147,7 @@ export default function Notes() {
             )}
           </div>
         </form>
-        <div>
+        <div className="note-container">
           {notes &&
             notes.map((note, index) => (
               <DisplayNote

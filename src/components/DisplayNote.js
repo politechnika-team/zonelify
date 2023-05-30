@@ -8,15 +8,15 @@ export default function DisplayNote({
   getUpdatedNoteId,
 }) {
   return (
-    <div className="note-container">
-      <div className="note">
-        <h2 className="title">{title}</h2>
-        <p className="content">{content}</p>
+    <div className="note">
+      <h2 className="note-title">{title}</h2>
+      <p className="note-content">{content}</p>
+      <div className="note-buttons">
+        <button onClick={() => getId(id)}>Delete note</button>
+        <button onClick={() => getUpdatedNoteId({ content, title, id })}>
+          Update note
+        </button>
       </div>
-      <button onClick={() => getId(id)}>Delete</button>
-      <button onClick={() => getUpdatedNoteId({ content, title, id })}>
-        Update note
-      </button>
     </div>
   );
 }

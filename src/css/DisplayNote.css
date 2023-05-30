@@ -1,12 +1,59 @@
 .note-container{
     display: flex ;
-    flex-direction: row;
     padding: 10px;
     margin: 10px 0;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .note{
-    border: 1px solid black
+    width: 40%;
+    height: 60%; 
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid #c1c2c4;
+    border-radius: 50% 20% / 10% 40%;
+    box-sizing: border-box;
 }
 
-/*OSTYLOWAC TO W CHUJ*/
+.note-title{
+    font-size: 20px;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    padding: 15px 10px 0 10px;
+}
+
+.note-content{
+    font-size: 15px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin: 10px;
+}
+
+.note-buttons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.note-buttons button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    border-style: none;
+    border-radius: 10px;
+    background-color: #6D819D;
+    color: white;
+    height: 1.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor:pointer;
+    margin: 10px auto;
+    transition: all 0.5s ease-out;
+}
+
+.note-buttons button:hover{
+    background-color: #3758B1;
+}
