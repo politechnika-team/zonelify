@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { addDoc, collection } from "firebase/firestore";
-import { db, auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { db } from "../firebase";
 import "../css/Home.css";
 import { AuthContext } from "../context/AuthContext";
 
@@ -15,10 +14,6 @@ export default function CreatePost() {
     content: yup
       .string()
       .required("In order to drop in you need to write something!!!"),
-    //TODO
-    // dodać lajki dislajki fajwority
-
-    //TODO
   });
   //resolver to useForm
   const { register, handleSubmit, formState } = useForm({

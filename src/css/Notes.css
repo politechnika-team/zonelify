@@ -22,6 +22,12 @@
     transition: all 0.5s ease-out;
 }
 
+.addnote-btn:disabled{
+    background-color: black;
+    color: white;
+    cursor: not-allowed;
+}
+
 .addnote-btn:hover{
     background-color: #3758B1;
 }
@@ -36,6 +42,7 @@ textarea{
     background-color: #e4e6eb;
     resize: none;
     margin: 15px 0;
+    outline: none;
 }
 
 textarea::placeholder{
@@ -46,7 +53,6 @@ textarea::placeholder{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto 30px;
     width: fit-content;
     border-style: none;
     border-radius: 10px;

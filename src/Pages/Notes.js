@@ -17,11 +17,7 @@ import { db } from "../firebase";
 export default function Notes() {
   const { currentUser, darkMode } = useContext(AuthContext);
   const [notes, setNotes] = useState([]);
-  const [addNote, setAddNote] = useState({
-    title: "",
-    content: "",
-    userId: "",
-  });
+  const [addNote, setAddNote] = useState({});
   const [id, setId] = useState("");
   const [showUpdateButton, setShowUpdateButton] = useState(false);
   const currentDate = new Date();
@@ -93,8 +89,6 @@ export default function Notes() {
     const updatenote = doc(noteRef, id);
     await updateDoc(updatenote, {
       ...addNote,
-      title: addNote.title,
-      content: addNote.content,
     });
     setShowUpdateButton(false);
   };
@@ -123,7 +117,7 @@ export default function Notes() {
             placeholder="Enter note title..."
             value={addNote.title}
             onChange={handleChange}
-            maxlength="18"
+            maxLength="18"
           ></input>
           <textarea
             className="content-input"
@@ -134,10 +128,19 @@ export default function Notes() {
             value={addNote.content}
             placeholder="Type content here..."
             onChange={handleChange}
+            maxLength="250"
           ></textarea>
           <div className="notes-btn-container">
-            {" "}
-            <button className="addnote-btn">Add note</button>
+            <button
+              className="addnote-btn"
+              disabled={
+                addNote.content == "" ||
+                addNote.title == "" ||
+                showUpdateButton == true
+              }
+            >
+              Add note
+            </button>
             {showUpdateButton ? (
               <button className="update-btn" onClick={() => updatedNote(id)}>
                 Update note
