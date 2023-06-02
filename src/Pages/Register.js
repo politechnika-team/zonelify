@@ -32,6 +32,7 @@ export default function Register() {
       });
 
       navigate("/");
+      window.location.reload();
     } catch (error) {
       if (error.code === "auth/weak-password") {
         setError("Password should be at least 6 characters");

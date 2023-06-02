@@ -61,6 +61,7 @@ export default function CreatePost() {
           <input
             type="text"
             placeholder="Write something!"
+            maxLength="250"
             {...register("content")}
           />
           <p style={{ color: "red" }}>{formState.errors.content?.message}</p>
