@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/zonelify/static/css/main.4939f920.css",
-    "main.js": "/zonelify/static/js/main.65e36793.js",
+    "main.js": "/zonelify/static/js/main.90b76fdb.js",
     "static/media/site-logo.svg": "/zonelify/static/media/site-logo.f89f93e90dfa9afd2be535cc4521df26.svg",
     "index.html": "/zonelify/index.html",
     "main.4939f920.css.map": "/zonelify/static/css/main.4939f920.css.map",
-    "main.65e36793.js.map": "/zonelify/static/js/main.65e36793.js.map"
+    "main.90b76fdb.js.map": "/zonelify/static/js/main.90b76fdb.js.map"
   },
   "entrypoints": [
     "static/css/main.4939f920.css",
-    "static/js/main.65e36793.js"
+    "static/js/main.90b76fdb.js"
   ]
 }
