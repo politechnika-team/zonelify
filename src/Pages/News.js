@@ -4,28 +4,20 @@ import NewsArticle from "./NewsArticle";
 import axios from "axios";
 import "../css/News.css";
 import { RotatingLines } from "react-loader-spinner";
+import newsData from "../news.json"
 
 function News() {
   const { darkMode, setDarkMode } = useContext(AuthContext);
-  const [data, setData] = useState();
-  const apiKey = "9f0f3f95afde4552b4c96b6ba22e2dd0";
+  
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://newsapi.org/v2/everything?q=tesla&from=2023-04-16&sortBy=publishedAt&apiKey=${apiKey}`
-      )
-      .then((response) => setData(response.data))
-      .catch((error) => console.log(error));
-  }, []);
-
-  console.log(data);
+  console.log(newsData);
 
   return (
     <div className={`news-container ${darkMode ? "dark-mode" : "light-mode"}`}>
+      {/* <button onClick={handleDownload}>Download JSON</button> */}
       <div className="all__news">
-        {data ? (
-          data.articles.map((news, index) => (
+        {newsData ? (
+          newsData.articles.map((news, index) => (
             <NewsArticle data={news} key={index} />
           ))
         ) : (

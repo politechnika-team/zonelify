@@ -5,7 +5,7 @@ export default function ErrorPage() {
           position: "relative",
           width: "100%",
           height: "100vh",
-          backgroundColor: "#fa293e",
+          backgroundColor: "#ff7070",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
