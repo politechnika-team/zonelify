@@ -34,7 +34,7 @@ export default function App() {
     return children;
   };
   return (
-    <Router basename="/zonelify">
+    <Router>
       {currentUser && <SideMenu />}
       <Routes>
         <Route path="/">
