@@ -1,7 +1,7 @@
 {
   "name": "zonelify",
   "version": "0.1.0",
-  "homepage": "https://gitname.github.io/zonelify",
+  
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^3.0.0",
