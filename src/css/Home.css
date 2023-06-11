@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  min-width: 70%;
+  width: 70%;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -13,7 +13,7 @@
 }
 
 .dark-mode {
-  background-color: #333;
+  background-color: #535353;
   color: #fff;
 }
 
@@ -72,7 +72,7 @@
   width: 100px;
   border-style: none;
   border-radius: 10px;
-  background-color: #6e8891;
+  background-color: #6D819D;
   color: white;
   height: 3rem;
   font-size: 1rem;
@@ -82,9 +82,11 @@
   transition: all 0.5s ease-out;
 }
 
-/*TODO*/
-/*tutaj dodac style do nieaktywnego buttona jakies ładne*/
-/*TODO*/
+.dropin-btn:hover{
+  background-color: #3758B1;
+}
+
+
 .dropin-btn:disabled {
   background-color: black;
   color: white;
@@ -123,7 +125,7 @@
 .post-footer {
   display: flex;
   width: 40%;
-  justify-content: space-between;
+  
   margin-top: 10px;
 }
 
@@ -163,6 +165,3 @@
   height: 40px;
 }
 
-.post-footer img:hover {
-  background-color: black;
-}

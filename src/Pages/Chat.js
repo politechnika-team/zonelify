@@ -12,16 +12,18 @@ export default function Chat() {
   }
 
   return (
-    <div className="pages-container">
+    <div className="pages-container" style={{overflow: "hidden"}}>
       <div className="users-list">
         <UsersList onSelectUser={handleSelectUser} />
       </div>
 
-        <div className={`chat-container ${darkMode ? "dark-mode" : "light-mode"}`}>
+      <div
+        className={`chat-container ${darkMode ? "dark-mode" : "light-mode"}`}
+      >
         {recipientId ? (
           <ChatRoom recipientId={recipientId} />
         ) : (
-          <p>Please select a user to chat with</p>
+          <p className="chat-info">Please select a user to chat with</p>
         )}
       </div>
     </div>

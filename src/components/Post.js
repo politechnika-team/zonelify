@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import icon1 from "../images/post-icon1.svg";
-import icon2 from "../images/post-icon2.svg";
-import icon3 from "../images/post-icon3.svg";
+import React, { useEffect, useState, useContext } from "react";
+import likeIcon from "../images/like.png";
+import fillLikeIcon from "../images/like-liked.png";
 import trashIcon from "../images/trash.png";
+import whiteTrashIcon from "../images/white-trash.png";
 import { db } from "../firebase";
 import {
   collection,
@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import DeletePost from "./DeletePost";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Post({
   content,
@@ -30,7 +31,7 @@ export default function Post({
 }) {
   //POST DELETE SECTION
   const [isOpen, setIsOpen] = useState(false);
-  //POST DELETE SECTION
+  const { darkMode, setDarkMode } = useContext(AuthContext);
 
   const [likes, setLikes] = useState(null);
   const likesRef = collection(db, "likes");
@@ -121,23 +122,20 @@ export default function Post({
           {/*TODO*/}
           {/*pozmieniac svg na buttony albo obrazki bo trzeba zmienic na thumbsdown albo dislike jednak jak już raz polajkowal */}
           {/*TODO*/}
-          <img alt="" src={icon1} />
           <img
             alt=""
-            src={icon2}
+            src={hasUserLiked ? fillLikeIcon : likeIcon}
             onClick={hasUserLiked ? removeLike : addLike}
           />
           {/*tutaj zmienic to na nowy obrazek albo cos*/}
-          {hasUserLiked ? "polajkowane" : "niepolajkowane"}
-          {likes?.length && <p>{likes?.length}</p>}
-          <img alt="" src={icon3} />
+          <p>{likes?.length}</p>
         </div>
       </div>
       {currentUser.uid === creatorId ? (
         <img
           className="trash-icon"
           alt="Delete Post"
-          src={trashIcon}
+          src={darkMode ? whiteTrashIcon : trashIcon}
           onClick={() => setIsOpen(true)}
         />
       ) : (

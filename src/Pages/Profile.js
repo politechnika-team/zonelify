@@ -89,7 +89,13 @@ export default function Profile() {
             </button>
           )}
           {isOpen && (
-            <EditProfile open={isOpen} onClose={() => setIsOpen(false)} />
+            <EditProfile
+              open={isOpen}
+              onClose={() => {
+                setIsOpen(false);
+                window.location.reload(true);
+              }}
+            />
           )}
         </div>
         <div className="toggle">
@@ -101,7 +107,10 @@ export default function Profile() {
               },
             }}
           >
-            <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+            <Switch
+              checked={darkMode}
+              onChange={() => setDarkMode(!darkMode)}
+            />
           </ConfigProvider>
         </div>
         <div className="post-container">
